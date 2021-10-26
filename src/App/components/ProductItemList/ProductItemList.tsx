@@ -35,6 +35,10 @@ const style = StyleSheet.create({
   prix: {fontWeight: '900'},
   container: {
     alignItems: 'center',
+    minWidth: 150,
+    height: 170,
+    marginLeft: 5,
+    marginBottom: 8,
   },
 });
 export default ProductItemList;
