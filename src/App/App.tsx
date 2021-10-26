@@ -8,32 +8,38 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, ScrollView, View, Text, Alert} from 'react-native';
 import Button from './components/Button';
 
 const App = () => {
+  const [counter, setcounter] = useState(0);
   return (
     <SafeAreaView>
       {/* <StatusBar /> */}
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <View>
+          <Text>Valeur du compteur : {counter}</Text>
+        </View>
+        <View>
           <Text>DEMAT Breizh</Text>
           <Button
             bgColor="tomato"
-            onMyButtonPressedAction={(arg: String) => {
-              Alert.alert('Mon 1er button clicked,->', JSON.stringify(arg));
+            onMyButtonPressedAction={() => {
+              setcounter(counter + 1);
+              console.log(counter);
             }}>
             <View>
-              <Text>Benjamin le button</Text>
+              <Text>Ajouter 1</Text>
             </View>
           </Button>
           <Button
-            onMyButtonPressedAction={arg => {
-              Alert.alert('Mon 2eme button clicked,->', JSON.stringify(arg));
+            onMyButtonPressedAction={() => {
+              setcounter(counter - 1);
+              console.log(counter);
             }}>
             <View>
-              <Text>Benjamin le button</Text>
+              <Text>Soustraire 1</Text>
             </View>
           </Button>
         </View>
