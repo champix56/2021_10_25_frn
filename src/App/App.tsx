@@ -9,31 +9,30 @@
  */
 
 import React, {useState} from 'react';
-import {SafeAreaView, ScrollView, View, Text} from 'react-native';
-import Button from './components/Button';
+import {SafeAreaView, ScrollView} from 'react-native';
 import ProductsList from './components/ProductsList/ProductsList';
 const initialState = [
   {
     id: 0,
     name: 'Triskel pendentif',
     prix: 10.0,
-    img: 'https://www.celaur.fr/app/uploads/2018/11/00574.jpg',
+    img: 'https://i.picsum.photos/id/684/600/400.jpg?hmac=lEvIlDjUnUbB-FAHkYndJsgWtvRH2Wf651mXgX1hPFs',
   },
   {
     id: 1,
     name: 'Chouchen/hydromel',
     prix: 3.5,
-    img: 'http://www.ruche-ansoise.com/27-thickbox_default/hydromel-doux-75cl.jpg',
+    img: 'https://i.picsum.photos/id/684/600/400.jpg?hmac=lEvIlDjUnUbB-FAHkYndJsgWtvRH2Wf651mXgX1hPFs',
   },
   {
     id: 2,
     name: 'Drapeau gwen ha du',
     prix: 25,
-    img: 'https://assets.bigcartel.com/product_images/226943573/drapeau-breton-pas-cher-gwenn-ha-du-banniel-breizh.jpg?auto=format&fit=max&w=2000',
+    img: 'https://i.picsum.photos/id/684/600/400.jpg?hmac=lEvIlDjUnUbB-FAHkYndJsgWtvRH2Wf651mXgX1hPFs',
   },
 ];
 const App = () => {
-  const [counter, setcounter] = useState(0);
+  // const [counter, setcounter] = useState(0);
   const [products, setproducts] = useState(initialState);
   return (
     <SafeAreaView>

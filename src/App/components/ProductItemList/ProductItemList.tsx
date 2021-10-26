@@ -8,11 +8,10 @@ interface Props {
     prix: number;
   };
   onProductPressed?: Function;
-  key?: string;
 }
-const ProductItemList = (props: Props) => {
+const ProductItemList: React.FC<Props> = (props: Props) => {
   return (
-    <TouchableOpacity key={props.key}>
+    <TouchableOpacity>
       <View>
         <Image source={{uri: props.product.img}} width={100} height={100} />
         <View>
