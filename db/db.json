@@ -1,22 +1,25 @@
 {
-    "products":[
-        {
-            "id": 0,
-            "name": "Triskel pendentif",
-            "prix": 10.0,
-            "img": "https://i.picsum.photos/id/684/600/400.jpg?hmac=lEvIlDjUnUbB-FAHkYndJsgWtvRH2Wf651mXgX1hPFs",
-          },
-          {
-            "id": 1,
-            "name": "Chouchen/hydromel",
-            "prix": 3.5,
-            "img": "https://i.picsum.photos/id/684/600/400.jpg?hmac=lEvIlDjUnUbB-FAHkYndJsgWtvRH2Wf651mXgX1hPFs",
-          },
-          {
-            "id": 2,
-            "name": "Drapeau gwen ha du",
-            "prix": 25,
-            "img": "https://i.picsum.photos/id/684/600/400.jpg?hmac=lEvIlDjUnUbB-FAHkYndJsgWtvRH2Wf651mXgX1hPFs",
-          }
-    ]
+  "products": [
+    {
+      "id": 0,
+      "name": "Triskel pendentif",
+      "prix": 10,
+      "img": "https://i.picsum.photos/id/684/600/400.jpg?hmac=lEvIlDjUnUbB-FAHkYndJsgWtvRH2Wf651mXgX1hPFs"
+    },
+    {
+      "id": 1,
+      "name": "Chouchen/hydromel",
+      "prix": 3.5,
+      "img": "https://i.picsum.photos/id/684/600/400.jpg?hmac=lEvIlDjUnUbB-FAHkYndJsgWtvRH2Wf651mXgX1hPFs"
+    },
+    {
+      "id": 2,
+      "name": "Drapeau gwen ha du",
+      "prix": 25,
+      "img": "https://i.picsum.photos/id/684/600/400.jpg?hmac=lEvIlDjUnUbB-FAHkYndJsgWtvRH2Wf651mXgX1hPFs"
+    }
+  ],
+  "categories":[
+      {"id":0,"name":"cat1"}
+  ]
 }
