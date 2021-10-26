@@ -12,8 +12,11 @@ interface Props {
 const ProductItemList: React.FC<Props> = (props: Props) => {
   return (
     <TouchableOpacity>
-      <View>
-        <Image source={{uri: props.product.img}} width={100} height={100} />
+      <View style={style.container}>
+        <Image
+          source={{uri: props.product.img}}
+          style={{width: 100, height: 100}}
+        />
         <View>
           <Text style={style.center}>{props.product.name}</Text>
         </View>
@@ -30,5 +33,8 @@ const ProductItemList: React.FC<Props> = (props: Props) => {
 const style = StyleSheet.create({
   center: {textAlign: 'center'},
   prix: {fontWeight: '900'},
+  container: {
+    alignItems: 'center',
+  },
 });
 export default ProductItemList;
