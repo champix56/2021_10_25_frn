@@ -1,17 +1,18 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {ReactElement, ReactNode} from 'react';
+import {StyleSheet, View} from 'react-native';
 
 interface Props {
-  text: String;
+  children: ReactElement | Array<ReactElement | ReactNode> | String;
 }
 const Button: React.FC<Props> = props => {
   console.log(props);
   return (
     <View style={{...styles.container, ...styles.moreContainer}}>
-      <Text style={styles.textContent}>{props.text}</Text>
+      {props.children}
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'plum',
