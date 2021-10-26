@@ -8,11 +8,13 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "devtools":"react-devtools",
+    "devtools": "react-devtools",
+    "json": "json-server -p 5679 db/db.json",
     "baseComponent": "npx generate-react-cli c --type=rnbase",
     "baseHookComponent": "npx generate-react-cli c --type=rnhookbase"
   },
   "dependencies": {
+    "json-server": "^0.17.0",
     "react": "17.0.2",
     "react-devtools": "^4.20.2",
     "react-native": "0.66.1"
