@@ -44,7 +44,9 @@ const App = () => {
     } else {
       setfiltredProduct(
         products.filter(e => {
-          return e.name.includes(search);
+          return e.name
+            .toLocaleLowerCase()
+            .includes(search.toLocaleLowerCase());
         }),
       );
     }
