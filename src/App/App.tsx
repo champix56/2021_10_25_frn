@@ -9,40 +9,37 @@
  */
 
 import React, {useState} from 'react';
-import {SafeAreaView, ScrollView, View, Text, Alert} from 'react-native';
+import {SafeAreaView, ScrollView, View, Text} from 'react-native';
 import Button from './components/Button';
-
+import ProductsList from './components/ProductsList/ProductsList';
+const initialState = [
+  {
+    id: 0,
+    name: 'Triskel pendentif',
+    prix: 10.0,
+    img: 'https://www.celaur.fr/app/uploads/2018/11/00574.jpg',
+  },
+  {
+    id: 1,
+    name: 'Chouchen/hydromel',
+    prix: 3.5,
+    img: 'http://www.ruche-ansoise.com/27-thickbox_default/hydromel-doux-75cl.jpg',
+  },
+  {
+    id: 2,
+    name: 'Drapeau gwen ha du',
+    prix: 25,
+    img: 'https://assets.bigcartel.com/product_images/226943573/drapeau-breton-pas-cher-gwenn-ha-du-banniel-breizh.jpg?auto=format&fit=max&w=2000',
+  },
+];
 const App = () => {
   const [counter, setcounter] = useState(0);
+  const [products, setproducts] = useState(initialState);
   return (
     <SafeAreaView>
       {/* <StatusBar /> */}
       <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View>
-          <Text>Valeur du compteur : {counter}</Text>
-        </View>
-        <View>
-          <Text>DEMAT Breizh</Text>
-          <Button
-            bgColor="tomato"
-            onMyButtonPressedAction={() => {
-              setcounter(counter + 1);
-              console.log(counter);
-            }}>
-            <View>
-              <Text>Ajouter 1</Text>
-            </View>
-          </Button>
-          <Button
-            onMyButtonPressedAction={() => {
-              setcounter(counter - 1);
-              console.log(counter);
-            }}>
-            <View>
-              <Text>Soustraire 1</Text>
-            </View>
-          </Button>
-        </View>
+        <ProductsList products={products} />
       </ScrollView>
     </SafeAreaView>
   );

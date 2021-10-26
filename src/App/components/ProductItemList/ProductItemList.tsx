@@ -7,11 +7,12 @@ interface Props {
     img: string;
     prix: number;
   };
-  onProductPressed: Function;
+  onProductPressed?: Function;
+  key?: string;
 }
 const ProductItemList = (props: Props) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity key={props.key}>
       <View>
         <Image source={{uri: props.product.img}} width={100} height={100} />
         <View>
