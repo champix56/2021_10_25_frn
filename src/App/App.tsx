@@ -19,6 +19,11 @@ const App = () => {
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <View>
           <Text>DEMAT Breizh</Text>
+          <Button bgColor="tomato">
+            <View>
+              <Text>Benjamin le button</Text>
+            </View>
+          </Button>
           <Button>
             <View>
               <Text>Benjamin le button</Text>
