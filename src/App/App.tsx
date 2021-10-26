@@ -13,6 +13,7 @@ import {SafeAreaView, ScrollView, Text} from 'react-native';
 import {IProduct} from '../interfaces/IProduct';
 import ProductSearch from './components/ProductSearch/ProductSearch';
 import ProductsList from './components/ProductsList/ProductsList';
+import {ADR_REST, RESSOURCES_NAME} from './config/config';
 const initialState: Array<IProduct> = [];
 const App = () => {
   // const [counter, setcounter] = useState(0);
@@ -33,6 +34,11 @@ const App = () => {
       );
     }
   }, [search, products]);
+  useEffect(() => {
+    fetch(`${ADR_REST}${RESSOURCES_NAME.products}`)
+      .then(f => f.json())
+      .then(a => setproducts(a));
+  }, []);
   return (
     <SafeAreaView>
       {/* <StatusBar /> */}
