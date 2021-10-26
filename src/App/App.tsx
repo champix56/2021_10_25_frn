@@ -10,6 +10,7 @@
 
 import React, {useState} from 'react';
 import {SafeAreaView, ScrollView} from 'react-native';
+import ProductSearch from './components/ProductSearch/ProductSearch';
 import ProductsList from './components/ProductsList/ProductsList';
 const initialState = [
   {
@@ -34,9 +35,11 @@ const initialState = [
 const App = () => {
   // const [counter, setcounter] = useState(0);
   const [products, setproducts] = useState(initialState);
+  const [search, setsearch] = useState('');
   return (
     <SafeAreaView>
       {/* <StatusBar /> */}
+      <ProductSearch value={search} />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <ProductsList products={products} />
       </ScrollView>
