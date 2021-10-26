@@ -1,12 +1,8 @@
 import React from 'react';
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {IProduct} from '../../../interfaces/IProduct';
 interface Props {
-  product: {
-    id?: number;
-    name: String;
-    img: string;
-    prix: number;
-  };
+  product: IProduct;
   onProductPressed?: Function;
 }
 const ProductItemList: React.FC<Props> = (props: Props) => {

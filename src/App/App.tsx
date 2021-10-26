@@ -10,28 +10,10 @@
 
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, ScrollView, Text} from 'react-native';
+import {IProduct} from '../interfaces/IProduct';
 import ProductSearch from './components/ProductSearch/ProductSearch';
 import ProductsList from './components/ProductsList/ProductsList';
-const initialState = [
-  {
-    id: 0,
-    name: 'Triskel pendentif',
-    prix: 10.0,
-    img: 'https://i.picsum.photos/id/684/600/400.jpg?hmac=lEvIlDjUnUbB-FAHkYndJsgWtvRH2Wf651mXgX1hPFs',
-  },
-  {
-    id: 1,
-    name: 'Chouchen/hydromel',
-    prix: 3.5,
-    img: 'https://i.picsum.photos/id/684/600/400.jpg?hmac=lEvIlDjUnUbB-FAHkYndJsgWtvRH2Wf651mXgX1hPFs',
-  },
-  {
-    id: 2,
-    name: 'Drapeau gwen ha du',
-    prix: 25,
-    img: 'https://i.picsum.photos/id/684/600/400.jpg?hmac=lEvIlDjUnUbB-FAHkYndJsgWtvRH2Wf651mXgX1hPFs',
-  },
-];
+const initialState: Array<IProduct> = [];
 const App = () => {
   // const [counter, setcounter] = useState(0);
   const [products, setproducts] = useState(initialState);
