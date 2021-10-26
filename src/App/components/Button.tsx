@@ -1,28 +1,35 @@
 import React, {ReactElement, ReactNode} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {Alert, StyleSheet, TouchableHighlight, View} from 'react-native';
 import PropTypes from 'prop-types';
 
 interface Props {
   children: ReactElement | Array<ReactElement | ReactNode> | String;
   bgColor?: string;
+  onMyButtonPressedAction: Function;
 }
 const Button: React.FC<Props> = props => {
   console.log(props);
   return (
-    <View
-      style={{
-        ...styles.container,
-        ...styles.moreContainer,
-        backgroundColor: props.bgColor,
+    <TouchableHighlight
+      onPress={evt => {
+        props.onMyButtonPressedAction('azertyui');
+        console.log(evt);
       }}>
-      {props.children}
-    </View>
+      <View
+        style={{
+          ...styles.container,
+          ...styles.moreContainer,
+          backgroundColor: props.bgColor,
+        }}>
+        {props.children}
+      </View>
+    </TouchableHighlight>
   );
 };
-Button.propTypes = {
-  children: PropTypes.any.isRequired,
-  bgColor: PropTypes.string.isRequired,
-};
+// Button.propTypes = {
+//   children: PropTypes.any.isRequired,
+//   bgColor: PropTypes.string.isRequired,
+// };
 Button.defaultProps = {
   bgColor: 'skyblue',
 };

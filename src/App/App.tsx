@@ -9,7 +9,7 @@
  */
 
 import React from 'react';
-import {SafeAreaView, ScrollView, View, Text} from 'react-native';
+import {SafeAreaView, ScrollView, View, Text, Alert} from 'react-native';
 import Button from './components/Button';
 
 const App = () => {
@@ -19,12 +19,19 @@ const App = () => {
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <View>
           <Text>DEMAT Breizh</Text>
-          <Button bgColor="tomato">
+          <Button
+            bgColor="tomato"
+            onMyButtonPressedAction={(arg: String) => {
+              Alert.alert('Mon 1er button clicked,->', JSON.stringify(arg));
+            }}>
             <View>
               <Text>Benjamin le button</Text>
             </View>
           </Button>
-          <Button>
+          <Button
+            onMyButtonPressedAction={arg => {
+              Alert.alert('Mon 2eme button clicked,->', JSON.stringify(arg));
+            }}>
             <View>
               <Text>Benjamin le button</Text>
             </View>
