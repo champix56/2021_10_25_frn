@@ -1,21 +1,40 @@
-import React, {useEffect, useState} from 'react';
-import {View, TextInput, Button} from 'react-native';
-import style from './ProductSearch.style';
+import {resolvePreset} from '@babel/core';
+import React from 'react';
+import {View, TextInput, StyleSheet} from 'react-native';
 interface Props {
-  value: String;
+  value: string;
+  onChange: Function;
 }
-//const initialState = {};
 const ProductSearch = (props: Props) => {
-  //const [state, setstate] = useState(initialState);
-  // useEffect(() => {
-  //   return () => {};
-  // }, []);
   return (
-    <View>
-      <TextInput placeholder="Recherche"></TextInput>
-      <Button title="Trouver" />
+    <View style={style.container}>
+      <TextInput
+        placeholder="Recherche"
+        style={style.searchInput}
+        value={props.value}
+        onChangeText={textValue => {
+          console.log(textValue);
+          props.onChange(textValue);
+        }}
+      />
+      {/* <View style={style.searchButton}>
+        <Button title="go" />
+      </View> */}
     </View>
   );
 };
-
+const style = StyleSheet.create({
+  searchButton: {
+    width: 45,
+  },
+  searchInput: {
+    flexGrow: 1,
+    borderWidth: 1,
+    height: 35,
+  },
+  container: {
+    flexDirection: 'row',
+    marginBottom: 5,
+  },
+});
 export default ProductSearch;

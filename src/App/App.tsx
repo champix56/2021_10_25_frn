@@ -8,8 +8,8 @@
  * @format
  */
 
-import React, {useState} from 'react';
-import {SafeAreaView, ScrollView} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {SafeAreaView, ScrollView, Text} from 'react-native';
 import ProductSearch from './components/ProductSearch/ProductSearch';
 import ProductsList from './components/ProductsList/ProductsList';
 const initialState = [
@@ -35,13 +35,32 @@ const initialState = [
 const App = () => {
   // const [counter, setcounter] = useState(0);
   const [products, setproducts] = useState(initialState);
+  const [filtredProduct, setfiltredProduct] = useState(initialState);
   const [search, setsearch] = useState('');
+  useEffect(() => {
+    console.log('Dans APP la search = ' + search);
+    if (search.length === 0) {
+      setfiltredProduct(products);
+    } else {
+      setfiltredProduct(
+        products.filter(e => {
+          return e.name.includes(search);
+        }),
+      );
+    }
+  }, [search, products]);
   return (
     <SafeAreaView>
       {/* <StatusBar /> */}
-      <ProductSearch value={search} />
+      <ProductSearch
+        value={search}
+        onChange={(text: string) => {
+          setsearch(text);
+        }}
+      />
+      <Text>{search}</Text>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <ProductsList products={products} />
+        <ProductsList products={filtredProduct} />
       </ScrollView>
     </SafeAreaView>
   );
