@@ -1,3 +1,4 @@
+import {combineReducers, createStore} from 'redux';
 const initialState = {
   products: [],
   filtredProducts: [],
@@ -9,6 +10,7 @@ const PRODUCTS_ACTIONS = Object.freeze({
   INIT: 'INIT',
 });
 const reducerProduit = (state = initialState, action) => {
+  console.log(action.type);
   switch (action.type) {
     case PRODUCTS_ACTIONS.ADD_PRODUCTS:
       return {
@@ -29,12 +31,40 @@ const reducerProduit = (state = initialState, action) => {
               )
             : state.products,
       };
+    case 'SET_WINDOW':
+      console.log('%c%s', 'color:red', 'DATA' + action.type);
+      return state;
     default:
       return state;
   }
 };
 
-let state = reducerProduit(undefined, {
+const initialStateNav = {
+  window: null,
+};
+
+const reducerNav = (state = initialStateNav, action) => {
+  switch (action.type) {
+    case 'SET_WINDOW':
+      console.log('%c%s', 'color:red', 'NAV' + action.type);
+      return {window: action.value};
+
+    default:
+      return state;
+  }
+};
+
+export const store = createStore(
+  combineReducers({datas: reducerProduit, nav: reducerNav}),
+);
+
+store.subscribe(() => {
+  console.log(store.getState());
+});
+store.dispatch({type: 'SET_WINDOW'});
+store.dispatch({type: 'INNEXISTANT'});
+
+store.dispatch({
   type: PRODUCTS_ACTIONS.ADD_PRODUCTS,
   values: [
     {id: 0, name: 'au', prix: '', img: ''},
@@ -42,18 +72,35 @@ let state = reducerProduit(undefined, {
     {id: 1, name: 'ua', prix: '', img: ''},
   ],
 });
-console.log(state);
+// store.dispatch({
+//   type: PRODUCTS_ACTIONS.SET_SEARCH,
+//   value: 'u',
+// });
+// store.dispatch({
+//   type: PRODUCTS_ACTIONS.SET_SEARCH,
+//   value: '',
+// });
 
-state = reducerProduit(state, {
-  type: PRODUCTS_ACTIONS.SET_SEARCH,
-  value: 'u',
-});
+// let state = reducerProduit(undefined, {
+//   type: PRODUCTS_ACTIONS.ADD_PRODUCTS,
+//   values: [
+//     {id: 0, name: 'au', prix: '', img: ''},
+//     {id: 2, name: 'ox', prix: '', img: ''},
+//     {id: 1, name: 'ua', prix: '', img: ''},
+//   ],
+// });
+// console.log(state);
 
-console.log(state);
+// state = reducerProduit(state, {
+//   type: PRODUCTS_ACTIONS.SET_SEARCH,
+//   value: 'u',
+// });
 
-state = reducerProduit(state, {
-  type: PRODUCTS_ACTIONS.SET_SEARCH,
-  value: '',
-});
+// console.log(state);
 
-console.log(state);
+// state = reducerProduit(state, {
+//   type: PRODUCTS_ACTIONS.SET_SEARCH,
+//   value: '',
+// });
+
+// console.log(state);
