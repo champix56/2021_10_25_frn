@@ -46,7 +46,11 @@ const initialStateNav = {
 const reducerNav = (state = initialStateNav, action) => {
   switch (action.type) {
     case 'SET_WINDOW':
-      console.log('%c%s', 'color:red', 'NAV' + action.type);
+      console.log(
+        '%c%s',
+        'color:red;text-decoration:underline;font-weight:900',
+        'NAV' + action.type,
+      );
       return {window: action.value};
 
     default:
@@ -61,9 +65,12 @@ export const store = createStore(
 store.subscribe(() => {
   console.log(store.getState());
 });
+console.time('dispatchs');
+console.group('store complet');
+console.group('store test');
 store.dispatch({type: 'SET_WINDOW'});
 store.dispatch({type: 'INNEXISTANT'});
-
+console.groupEnd();
 store.dispatch({
   type: PRODUCTS_ACTIONS.ADD_PRODUCTS,
   values: [
@@ -72,6 +79,8 @@ store.dispatch({
     {id: 1, name: 'ua', prix: '', img: ''},
   ],
 });
+console.timeEnd('dispatchs');
+console.groupEnd();
 // store.dispatch({
 //   type: PRODUCTS_ACTIONS.SET_SEARCH,
 //   value: 'u',
