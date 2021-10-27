@@ -1,4 +1,6 @@
+import React from 'react';
 import {combineReducers, createStore} from 'redux';
+import MainActivity from '../components/MainActivity/MainActivity';
 import {ADR_REST, RESSOURCES_NAME} from '../config/config';
 const initialState = {
   products: [],
@@ -59,14 +61,15 @@ const reducerProduit = (state = initialState, action) => {
 };
 
 const initialStateNav = {
-  window: null,
+  window: <MainActivity />,
 };
 
 const reducerNav = (state = initialStateNav, action) => {
   switch (action.type) {
     case 'SET_WINDOW':
       return {window: action.value};
-
+    case 'GO_HOME':
+      return {window: <MainActivity />};
     default:
       return state;
   }
