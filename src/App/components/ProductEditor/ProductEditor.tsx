@@ -89,7 +89,7 @@ const ProductEditor = (props: Props) => {
   );
 };
 const mapStateToProps = (state, own) => {
-  return {...own};
+  return own;
 };
 const mapDispatchToProps = dispatch => {
   return {

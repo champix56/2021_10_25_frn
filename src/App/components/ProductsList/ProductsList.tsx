@@ -42,7 +42,12 @@ const mapStateToProps = (state: any, own: IProps) => {
   };
 };
 const mapDispatchToProps = dispatch => {
-  goEditor: propduit =>
-    dispatch({type: 'SET_WINDOW', value: <ProductEditor produit={produit} />});
+  return {
+    goEditor: produit =>
+      dispatch({
+        type: 'SET_WINDOW',
+        value: <ProductEditor produit={produit} />,
+      }),
+  };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsList);
