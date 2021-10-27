@@ -1,17 +1,39 @@
 import {combineReducers, createStore} from 'redux';
+import {ADR_REST, RESSOURCES_NAME} from '../config/config';
 const initialState = {
   products: [],
   filtredProducts: [],
   search: '',
 };
-const PRODUCTS_ACTIONS = Object.freeze({
+export const PRODUCTS_ACTIONS = Object.freeze({
   ADD_PRODUCTS: 'ADD_PRODUCTS',
   SET_SEARCH: 'SET_SEARCH',
   INIT: 'INIT',
 });
+let interv = undefined;
 const reducerProduit = (state = initialState, action) => {
   console.log(action.type);
-  switch (action.type) {
+  const type = action.type.includes('@@redux/INIT')
+    ? 'START_PULLING'
+    : action.type;
+  switch (type) {
+    case PRODUCTS_ACTIONS.INIT:
+      fetch(`${ADR_REST}${RESSOURCES_NAME.products}`)
+        .then(f => f.json())
+        .then(a =>
+          store.dispatch({type: PRODUCTS_ACTIONS.ADD_PRODUCTS, values: a}),
+        );
+      return state;
+    case 'START_PULLING':
+      interv = interv
+        ? interv
+        : setInterval(() => {
+            store.dispatch({type: PRODUCTS_ACTIONS.INIT});
+          }, 1000);
+      return state;
+    case 'STOP_PULLING':
+      interv = interv ? clearInterval(interv) : null;
+      return state;
     case PRODUCTS_ACTIONS.ADD_PRODUCTS:
       return {
         ...state,
@@ -31,9 +53,6 @@ const reducerProduit = (state = initialState, action) => {
               )
             : state.products,
       };
-    case 'SET_WINDOW':
-      console.log('%c%s', 'color:red', 'DATA' + action.type);
-      return state;
     default:
       return state;
   }
@@ -46,11 +65,6 @@ const initialStateNav = {
 const reducerNav = (state = initialStateNav, action) => {
   switch (action.type) {
     case 'SET_WINDOW':
-      console.log(
-        '%c%s',
-        'color:red;text-decoration:underline;font-weight:900',
-        'NAV' + action.type,
-      );
       return {window: action.value};
 
     default:
@@ -62,25 +76,15 @@ export const store = createStore(
   combineReducers({datas: reducerProduit, nav: reducerNav}),
 );
 
-store.subscribe(() => {
-  console.log(store.getState());
-});
-console.time('dispatchs');
-console.group('store complet');
-console.group('store test');
-store.dispatch({type: 'SET_WINDOW'});
-store.dispatch({type: 'INNEXISTANT'});
-console.groupEnd();
-store.dispatch({
-  type: PRODUCTS_ACTIONS.ADD_PRODUCTS,
-  values: [
-    {id: 0, name: 'au', prix: '', img: ''},
-    {id: 2, name: 'ox', prix: '', img: ''},
-    {id: 1, name: 'ua', prix: '', img: ''},
-  ],
-});
-console.timeEnd('dispatchs');
-console.groupEnd();
+//store.dispatch({type: PRODUCTS_ACTIONS.INIT});
+// store.dispatch({
+//   type: PRODUCTS_ACTIONS.ADD_PRODUCTS,
+//   values: [
+//     {id: 0, name: 'au', prix: '', img: ''},
+//     {id: 2, name: 'ox', prix: '', img: ''},
+//     {id: 1, name: 'ua', prix: '', img: ''},
+//   ],
+// });
 // store.dispatch({
 //   type: PRODUCTS_ACTIONS.SET_SEARCH,
 //   value: 'u',
