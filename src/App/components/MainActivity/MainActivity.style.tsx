@@ -3,23 +3,33 @@ export default StyleSheet.create({
   container: {
     backgroundColor: 'skyblue',
     alignItems: 'center',
+    height: '100%',
   },
   title: {
-    fontSize: 20,
+    marginTop: 100,
+    fontSize: 40,
     fontWeight: '900',
     color: 'white',
     textDecorationLine: 'underline',
   },
   buttons: {
+    marginTop: '40%',
     flexDirection: 'row',
     flexWrap: 'wrap',
+    width: '100%',
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
   },
   button: {
     width: '30%',
     backgroundColor: 'white',
-    borderRadius: 25,
+    borderRadius: 50,
     justifyContent: 'center',
-    alignContent: 'center',
+    alignItems: 'center',
+    padding: 10,
   },
-  image: {width: 50, height: 50},
+  image: {width: 90, height: 90},
+  textButton: {
+    textAlign: 'center',
+  },
 });

@@ -13,17 +13,20 @@ const MainActivity: React.FunctionComponent<Props> = props => {
     <View style={style.container}>
       <Text style={style.title}>Ma super App</Text>
       <View style={style.buttons}>
-        <View style={style.button}>
-          <TouchableOpacity>
+        <TouchableOpacity style={style.button}>
+          <View >
             <Image source={require('../../img/list.png')} style={style.image} />
-            <Text>List Produit</Text>
-          </TouchableOpacity>
+            <Text style={style.textButton}>List Produit</Text>
+          </View>
+        </TouchableOpacity>
+
+        <View style={style.button}>
           <TouchableOpacity>
             <Image
               source={require('../../img/editor.png')}
               style={style.image}
             />
-            <Text>List Produit</Text>
+            <Text style={style.textButton}>List Produit</Text>
           </TouchableOpacity>
         </View>
       </View>
