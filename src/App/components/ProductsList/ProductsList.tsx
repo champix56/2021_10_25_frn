@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import {connect} from 'react-redux';
 import {IProduct} from '../../../interfaces/IProduct';
 // import style from './ProductsList.style';
@@ -12,11 +12,13 @@ type Props = StateProps & IProps;
 const ProductsList = (props: Props) => {
   console.log(props);
   return (
-    <View style={style.listContainer}>
-      {props.products.map((e: IProduct, i: number) => (
-        <ProductItemList product={e} key={'prod-' + i} />
-      ))}
-    </View>
+    <ScrollView>
+      <View style={style.listContainer}>
+        {props.products.map((e: IProduct, i: number) => (
+          <ProductItemList product={e} key={'prod-' + i} />
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 const style = StyleSheet.create({
