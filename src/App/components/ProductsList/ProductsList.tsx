@@ -1,15 +1,19 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
+import {connect} from 'react-redux';
+import {IProduct} from '../../../interfaces/IProduct';
 // import style from './ProductsList.style';
 import ProductItemList from '../ProductItemList/ProductItemList';
-interface Props {
-  products: Array<any>;
-}
-
+interface IProps {}
+//declaration auto des interface des maps
+type StateProps = ReturnType<typeof mapStateToProps>;
+//creation de l'interface composée des props + types des maps
+type Props = StateProps & IProps;
 const ProductsList = (props: Props) => {
+  console.log(props);
   return (
     <View style={style.listContainer}>
-      {props.products.map((e, i) => (
+      {props.products.map((e: IProduct, i: number) => (
         <ProductItemList product={e} key={'prod-' + i} />
       ))}
     </View>
@@ -21,4 +25,13 @@ const style = StyleSheet.create({
     flexWrap: 'wrap',
   },
 });
-export default ProductsList;
+const mapStateToProps = (state: any, own: IProps) => {
+  return {
+    products: state.datas.filtredProducts,
+    ...own,
+  };
+};
+const mapDispatchToProps = () => {
+  return {};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsList);

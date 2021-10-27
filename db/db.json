@@ -17,9 +17,18 @@
       "name": "Drapeau gwen ha du",
       "prix": 25,
       "img": "https://i.picsum.photos/id/684/600/400.jpg?hmac=lEvIlDjUnUbB-FAHkYndJsgWtvRH2Wf651mXgX1hPFs"
+    },
+    {
+      "name": "Drapeau fr",
+      "prix": 12,
+      "img": "https://i.picsum.photos/id/684/600/400.jpg?hmac=lEvIlDjUnUbB-FAHkYndJsgWtvRH2Wf651mXgX1hPFs",
+      "id": 3
     }
   ],
-  "categories":[
-      {"id":0,"name":"cat1"}
+  "categories": [
+    {
+      "id": 0,
+      "name": "cat1"
+    }
   ]
 }
