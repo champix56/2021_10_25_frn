@@ -1,13 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Image, TextInput, Button, ScrollView} from 'react-native';
+import {connect} from 'react-redux';
 import {IProduct} from '../../../interfaces/IProduct';
+import {PRODUCTS_ACTIONS} from '../../store/store';
 import MyButton from '../Button/Button';
 import style from './ProductEditor.style';
-interface Props {
+interface IProps {
   produit: IProduct;
 }
-
-const initialState = {};
+//declaration auto des interface des maps
+type StateProps = ReturnType<typeof mapStateToProps>;
+type DispatchProps = typeof mapDispatchToProps;
+//creation de l'interface composée des props + types des maps
+type Props = StateProps & DispatchProps & IProps;
 const ProductEditor = (props: Props) => {
   const [state, setstate] = useState(props.produit);
   useEffect(() => {
@@ -63,17 +68,34 @@ const ProductEditor = (props: Props) => {
         </View>
       </View>
       <View style={style.button}>
-        <MyButton onMyButtonPressed={() => undefined} bgColor="skyblue">
+        <MyButton
+          onMyButtonPressed={() => {
+            props.save(state);
+          }}
+          bgColor="skyblue">
           save
         </MyButton>
       </View>
       <View style={style.button}>
-        <MyButton onMyButtonPressed={() => undefined} bgColor="tomato">
+        <MyButton
+          onMyButtonPressed={() => {
+            props.goHome();
+          }}
+          bgColor="tomato">
           cancel
         </MyButton>
       </View>
     </ScrollView>
   );
 };
-
-export default ProductEditor;
+const mapStateToProps = (state, own) => {
+  return {...own};
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    goHome: () => dispatch({type: 'GO_HOME'}),
+    save: (pr: IProduct) =>
+      dispatch({type: PRODUCTS_ACTIONS.SAVE_CURRENT, value: pr}),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ProductEditor);

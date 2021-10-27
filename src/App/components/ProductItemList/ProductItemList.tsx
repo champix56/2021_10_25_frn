@@ -3,11 +3,14 @@ import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import {IProduct} from '../../../interfaces/IProduct';
 interface Props {
   product: IProduct;
-  onProductPressed?: Function;
+  onProductPressed: Function;
 }
 const ProductItemList: React.FC<Props> = (props: Props) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => {
+        props.onProductPressed();
+      }}>
       <View style={style.container}>
         <Image
           source={{uri: props.product.img}}

@@ -31,14 +31,12 @@ const reducerProduit = (state = initialState, action) => {
     case PRODUCTS_ACTIONS.SAVE_CURRENT:
       fetch(
         `${ADR_REST}${RESSOURCES_NAME.products}${
-          undefined !== state.selectedProduct.id
-            ? '/' + state.selectedProduct.id
-            : ''
+          undefined !== action.value.id ? '/' + action.value.id : ''
         }`,
         {
-          method: `${undefined !== state.selectedProduct.id ? 'PUT' : 'POST'}`,
+          method: `${undefined !== action.value.id ? 'PUT' : 'POST'}`,
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(state.selectedProduct),
+          body: JSON.stringify(action.value),
         },
       )
         .then(f => f.json())
@@ -84,7 +82,10 @@ const reducerProduit = (state = initialState, action) => {
       interv = interv ? clearInterval(interv) : null;
       return state;
     case PRODUCTS_ACTIONS.ADD_PRODUCTS:
-      return reducerProduit({...state,products: action.values},{type: PRODUCTS_ACTIONS.SET_SEARCH, value: state.search});
+      return reducerProduit(
+        {...state, products: action.values},
+        {type: PRODUCTS_ACTIONS.SET_SEARCH, value: state.search},
+      );
     case PRODUCTS_ACTIONS.SET_SEARCH:
       return {
         ...state,
